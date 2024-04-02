@@ -3,9 +3,29 @@
  */
 package tech.joshaustin.cornell4j;
 
+import tech.joshaustin.cornell4j.common.Vec3;
+import tech.joshaustin.cornell4j.image.Image;
+import tech.joshaustin.cornell4j.image.PPMExporter;
+
+import java.nio.file.Path;
+
 public class App {
 
     public static void main(String[] args) {
+        System.out.println("Starting render...");
+        final var image = new Image(256, 256);
+        for (int y = 0; y < 256; y++) {
+            for (int x = 0; x < 256; x++) {
+                double r = (double) x / (double) (256 - 1);
+                double g = (double) y / (double) (256 - 1);
+                double b = 0.0;
 
+                final var pixel = new Vec3.RGB(r, g, b);
+                image.setPixel(x, y, pixel);
+            }
+        }
+        final var exporter = new PPMExporter();
+        exporter.export(image, Path.of("output.ppm"));
+        System.out.println("Done.");
     }
 }

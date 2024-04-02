@@ -5,8 +5,12 @@ import tech.joshaustin.cornell4j.common.Vec3;
 public class Image {
 
     private final Vec3.RGB[][] pixels;
+    private final int width;
+    private final int height;
 
     public Image(int width, int height) {
+        this.width = width;
+        this.height = height;
         this.pixels = new Vec3.RGB[width][height];
     }
 
@@ -18,4 +22,11 @@ public class Image {
         return this.pixels[row][column];
     }
 
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
 }
